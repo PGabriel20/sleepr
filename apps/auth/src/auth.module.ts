@@ -5,8 +5,9 @@ import { UsersModule } from './users/users.module';
 import { LoggerModule } from '@app/common';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import * as Joi from 'joi'
 import { LocalStrategy } from 'apps/auth/src/strategies/local.strategy';
+import { JwtStrategy } from 'apps/auth/src/strategies/jwt.strategy';
+import * as Joi from 'joi'
 
 @Module({
   imports: [UsersModule, LoggerModule, JwtModule.registerAsync({
@@ -28,6 +29,6 @@ import { LocalStrategy } from 'apps/auth/src/strategies/local.strategy';
     })
   })],
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy],
+  providers: [AuthService, LocalStrategy, JwtStrategy],
 })
 export class AuthModule {}
