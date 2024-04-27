@@ -33,7 +33,7 @@ export class PaymentsService {
       currency: 'usd'
     })
 
-    this.notificationsService.emit('notify_email', { email })
+    this.notificationsService.emit('notify_email', { email, text: `Payment of $${amount} was completed sucessfully` })
 
     return paymentIntent
   }

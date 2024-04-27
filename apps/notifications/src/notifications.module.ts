@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
 import { NotificationsController } from './notifications.controller';
 import { NotificationsService } from './notifications.service';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi'
-import { LoggerModule, NOTIFICATIONS_SERVICE } from '@app/common';
-import { ClientsModule, Transport } from '@nestjs/microservices';
+import { LoggerModule } from '@app/common';
 
 @Module({
   imports: [
@@ -12,6 +11,10 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
       isGlobal: true,
       validationSchema: Joi.object({
         PORT: Joi.number().required(),
+        SMTP_USER: Joi.string().required(),
+        GOOGLE_OAUTH_CLIENT_ID: Joi.string().required(),
+        GOOGLE_OAUTH_CLIENT_SECRET: Joi.string().required(),
+        GOOGLE_OAUTH_REFRESH_TOKEN: Joi.string().required(),
       }),
     }),
     LoggerModule,
